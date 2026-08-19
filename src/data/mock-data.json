@@ -1,0 +1,584 @@
+[
+  {
+    "id": 1,
+    "title": "Modern Apartment in Gulberg",
+    "description": "A stylish and comfortable apartment in the heart of Gulberg with modern interiors and easy access to restaurants, cafes and shopping areas.",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+    ],
+    "price": 85,
+    "lat": 31.5106,
+    "lng": 74.3441,
+    "type": "Apartment",
+    "amenities": ["WiFi", "Air conditioning", "Kitchen", "Parking", "TV"],
+    "rating": 4.8,
+    "reviewCount": 124,
+    "host": {
+      "name": "Ayesha Khan",
+      "avatar": "https://i.pravatar.cc/150?img=47",
+      "joinedYear": 2019
+    },
+    "unavailableDates": ["2026-08-22", "2026-08-23", "2026-09-05"]
+  },
+  {
+    "id": 2,
+    "title": "Cozy Studio Near Liberty Market",
+    "description": "A cozy studio designed for solo travelers and couples looking for a convenient stay close to Liberty Market and MM Alam Road.",
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+      "https://images.unsplash.com/photo-1560185008-b033106af5c3"
+    ],
+    "price": 55,
+    "lat": 31.5089,
+    "lng": 74.3432,
+    "type": "Studio",
+    "amenities": ["WiFi", "Kitchen", "Air conditioning", "TV"],
+    "rating": 4.6,
+    "reviewCount": 89,
+    "host": {
+      "name": "Hamza Malik",
+      "avatar": "https://i.pravatar.cc/150?img=12",
+      "joinedYear": 2020
+    },
+    "unavailableDates": ["2026-08-25", "2026-08-26", "2026-09-10"]
+  },
+  {
+    "id": 3,
+    "title": "Luxury Villa in DHA",
+    "description": "Spacious luxury villa with elegant interiors, private outdoor space and premium amenities in a peaceful DHA neighborhood.",
+    "images": [
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea"
+    ],
+    "price": 220,
+    "lat": 31.4697,
+    "lng": 74.4081,
+    "type": "Villa",
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Parking",
+      "Kitchen",
+      "Air conditioning",
+      "TV",
+      "Garden"
+    ],
+    "rating": 4.9,
+    "reviewCount": 211,
+    "host": {
+      "name": "Usman Raza",
+      "avatar": "https://i.pravatar.cc/150?img=11",
+      "joinedYear": 2017
+    },
+    "unavailableDates": ["2026-08-20", "2026-08-21", "2026-08-28"]
+  },
+  {
+    "id": 4,
+    "title": "Elegant Home Near Johar Town",
+    "description": "A bright family-friendly home with spacious rooms, modern furniture and convenient access to Emporium Mall and Expo Centre.",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d"
+    ],
+    "price": 110,
+    "lat": 31.4697,
+    "lng": 74.2728,
+    "type": "House",
+    "amenities": ["WiFi", "Parking", "Kitchen", "Washer", "TV"],
+    "rating": 4.7,
+    "reviewCount": 156,
+    "host": {
+      "name": "Sara Ahmed",
+      "avatar": "https://i.pravatar.cc/150?img=32",
+      "joinedYear": 2018
+    },
+    "unavailableDates": ["2026-08-24", "2026-08-25", "2026-09-02"]
+  },
+  {
+    "id": 5,
+    "title": "Minimal Loft in Gulberg",
+    "description": "A beautifully designed loft featuring minimalist interiors, natural light and a relaxing atmosphere in central Lahore.",
+    "images": [
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+    ],
+    "price": 95,
+    "lat": 31.5165,
+    "lng": 74.3436,
+    "type": "Loft",
+    "amenities": ["WiFi", "Kitchen", "Air conditioning", "Workspace", "TV"],
+    "rating": 4.8,
+    "reviewCount": 102,
+    "host": {
+      "name": "Bilal Sheikh",
+      "avatar": "https://i.pravatar.cc/150?img=14",
+      "joinedYear": 2021
+    },
+    "unavailableDates": ["2026-08-29", "2026-08-30", "2026-09-12"]
+  },
+  {
+    "id": 6,
+    "title": "Peaceful Guest House in Model Town",
+    "description": "A peaceful guest house surrounded by greenery, ideal for travelers looking for a quiet and comfortable stay.",
+    "images": [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d"
+    ],
+    "price": 70,
+    "lat": 31.4839,
+    "lng": 74.3258,
+    "type": "Guesthouse",
+    "amenities": ["WiFi", "Garden", "Parking", "Breakfast", "Air conditioning"],
+    "rating": 4.5,
+    "reviewCount": 76,
+    "host": {
+      "name": "Nadia Hassan",
+      "avatar": "https://i.pravatar.cc/150?img=44",
+      "joinedYear": 2020
+    },
+    "unavailableDates": ["2026-08-27", "2026-09-01"]
+  },
+  {
+    "id": 7,
+    "title": "Modern Family House in DHA",
+    "description": "A spacious modern house with comfortable bedrooms, a large living area and family-friendly surroundings.",
+    "images": [
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3"
+    ],
+    "price": 145,
+    "lat": 31.4772,
+    "lng": 74.4053,
+    "type": "House",
+    "amenities": ["WiFi", "Parking", "Kitchen", "Garden", "Washer", "TV"],
+    "rating": 4.9,
+    "reviewCount": 198,
+    "host": {
+      "name": "Fahad Iqbal",
+      "avatar": "https://i.pravatar.cc/150?img=68",
+      "joinedYear": 2016
+    },
+    "unavailableDates": ["2026-08-22", "2026-08-31", "2026-09-07"]
+  },
+  {
+    "id": 8,
+    "title": "Bright Apartment Near MM Alam",
+    "description": "A bright contemporary apartment close to Lahore's best restaurants, cafes and shopping destinations.",
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+      "https://images.unsplash.com/photo-1560185008-b033106af5c3"
+    ],
+    "price": 90,
+    "lat": 31.5152,
+    "lng": 74.3564,
+    "type": "Apartment",
+    "amenities": ["WiFi", "Kitchen", "Air conditioning", "Elevator", "TV"],
+    "rating": 4.7,
+    "reviewCount": 137,
+    "host": {
+      "name": "Maham Tariq",
+      "avatar": "https://i.pravatar.cc/150?img=49",
+      "joinedYear": 2019
+    },
+    "unavailableDates": ["2026-08-23", "2026-08-24", "2026-09-04"]
+  },
+  {
+    "id": 9,
+    "title": "Classic Home in Garden Town",
+    "description": "A charming classic home offering comfortable rooms, a peaceful neighborhood and easy city access.",
+    "images": [
+      "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d"
+    ],
+    "price": 100,
+    "lat": 31.4828,
+    "lng": 74.3268,
+    "type": "House",
+    "amenities": ["WiFi", "Parking", "Kitchen", "Garden", "TV"],
+    "rating": 4.6,
+    "reviewCount": 91,
+    "host": {
+      "name": "Ali Hassan",
+      "avatar": "https://i.pravatar.cc/150?img=53",
+      "joinedYear": 2018
+    },
+    "unavailableDates": ["2026-08-26", "2026-09-03", "2026-09-04"]
+  },
+  {
+    "id": 10,
+    "title": "Luxury Penthouse in Gulberg",
+    "description": "A premium penthouse with stunning city views, stylish interiors and high-end amenities.",
+    "images": [
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3"
+    ],
+    "price": 260,
+    "lat": 31.5201,
+    "lng": 74.3439,
+    "type": "Penthouse",
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Gym",
+      "Parking",
+      "Kitchen",
+      "Air conditioning",
+      "TV"
+    ],
+    "rating": 5,
+    "reviewCount": 243,
+    "host": {
+      "name": "Hassan Ali",
+      "avatar": "https://i.pravatar.cc/150?img=60",
+      "joinedYear": 2015
+    },
+    "unavailableDates": ["2026-08-20", "2026-08-27", "2026-09-08"]
+  },
+  {
+    "id": 11,
+    "title": "Cozy Couple Retreat in DHA",
+    "description": "A warm and intimate apartment with tasteful interiors, perfect for couples and short weekend stays.",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9"
+    ],
+    "price": 75,
+    "lat": 31.4729,
+    "lng": 74.4017,
+    "type": "Apartment",
+    "amenities": ["WiFi", "Kitchen", "Air conditioning", "TV", "Workspace"],
+    "rating": 4.8,
+    "reviewCount": 118,
+    "host": {
+      "name": "Zainab Noor",
+      "avatar": "https://i.pravatar.cc/150?img=45",
+      "joinedYear": 2020
+    },
+    "unavailableDates": ["2026-08-30", "2026-09-01", "2026-09-09"]
+  },
+  {
+    "id": 12,
+    "title": "Spacious Family Villa",
+    "description": "A large villa with multiple bedrooms, spacious common areas and a beautiful private garden.",
+    "images": [
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d",
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea"
+    ],
+    "price": 190,
+    "lat": 31.4662,
+    "lng": 74.4145,
+    "type": "Villa",
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Garden",
+      "Parking",
+      "Kitchen",
+      "Washer",
+      "TV"
+    ],
+    "rating": 4.9,
+    "reviewCount": 187,
+    "host": {
+      "name": "Omar Farooq",
+      "avatar": "https://i.pravatar.cc/150?img=13",
+      "joinedYear": 2017
+    },
+    "unavailableDates": ["2026-08-21", "2026-08-22", "2026-09-06"]
+  },
+  {
+    "id": 13,
+    "title": "Stylish Studio in Bahria Town",
+    "description": "A modern studio apartment with a clean design and convenient access to restaurants and entertainment.",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+    ],
+    "price": 60,
+    "lat": 31.3669,
+    "lng": 74.1846,
+    "type": "Studio",
+    "amenities": ["WiFi", "Kitchen", "Parking", "Air conditioning"],
+    "rating": 4.5,
+    "reviewCount": 64,
+    "host": {
+      "name": "Maryam Asif",
+      "avatar": "https://i.pravatar.cc/150?img=48",
+      "joinedYear": 2021
+    },
+    "unavailableDates": ["2026-08-25", "2026-09-02", "2026-09-11"]
+  },
+  {
+    "id": 14,
+    "title": "Garden Villa in Bahria Town",
+    "description": "A relaxing villa surrounded by greenery with spacious rooms and a private outdoor area.",
+    "images": [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+    ],
+    "price": 155,
+    "lat": 31.3617,
+    "lng": 74.1881,
+    "type": "Villa",
+    "amenities": ["WiFi", "Garden", "Pool", "Parking", "Kitchen", "TV"],
+    "rating": 4.8,
+    "reviewCount": 145,
+    "host": {
+      "name": "Saad Ahmed",
+      "avatar": "https://i.pravatar.cc/150?img=15",
+      "joinedYear": 2018
+    },
+    "unavailableDates": ["2026-08-28", "2026-08-29", "2026-09-03"]
+  },
+  {
+    "id": 15,
+    "title": "Modern Flat Near Wapda Town",
+    "description": "A practical and comfortable flat with modern furniture, reliable WiFi and a convenient location.",
+    "images": [
+      "https://images.unsplash.com/photo-1560185008-b033106af5c3",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36"
+    ],
+    "price": 68,
+    "lat": 31.4384,
+    "lng": 74.2707,
+    "type": "Apartment",
+    "amenities": ["WiFi", "Kitchen", "Parking", "TV", "Air conditioning"],
+    "rating": 4.4,
+    "reviewCount": 58,
+    "host": {
+      "name": "Areeba Khan",
+      "avatar": "https://i.pravatar.cc/150?img=23",
+      "joinedYear": 2022
+    },
+    "unavailableDates": ["2026-08-24", "2026-09-05", "2026-09-06"]
+  },
+  {
+    "id": 16,
+    "title": "Peaceful Luxury Home",
+    "description": "A beautifully furnished home offering privacy, comfort and a peaceful environment for longer stays.",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d",
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154"
+    ],
+    "price": 135,
+    "lat": 31.4448,
+    "lng": 74.2762,
+    "type": "House",
+    "amenities": ["WiFi", "Kitchen", "Garden", "Parking", "Washer", "TV"],
+    "rating": 4.7,
+    "reviewCount": 112,
+    "host": {
+      "name": "Raza Ahmed",
+      "avatar": "https://i.pravatar.cc/150?img=57",
+      "joinedYear": 2019
+    },
+    "unavailableDates": ["2026-08-31", "2026-09-01", "2026-09-10"]
+  },
+  {
+    "id": 17,
+    "title": "Charming Apartment in Gulberg",
+    "description": "A charming apartment with warm interiors and a central location close to the city's popular attractions.",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"
+    ],
+    "price": 80,
+    "lat": 31.5127,
+    "lng": 74.3474,
+    "type": "Apartment",
+    "amenities": ["WiFi", "Kitchen", "Air conditioning", "Elevator", "TV"],
+    "rating": 4.6,
+    "reviewCount": 83,
+    "host": {
+      "name": "Hira Shah",
+      "avatar": "https://i.pravatar.cc/150?img=25",
+      "joinedYear": 2020
+    },
+    "unavailableDates": ["2026-08-23", "2026-09-07", "2026-09-08"]
+  },
+  {
+    "id": 18,
+    "title": "Premium Family Apartment",
+    "description": "A spacious apartment designed for families with comfortable bedrooms and a fully equipped kitchen.",
+    "images": [
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3"
+    ],
+    "price": 120,
+    "lat": 31.5052,
+    "lng": 74.3358,
+    "type": "Apartment",
+    "amenities": [
+      "WiFi",
+      "Kitchen",
+      "Parking",
+      "Washer",
+      "TV",
+      "Air conditioning"
+    ],
+    "rating": 4.8,
+    "reviewCount": 131,
+    "host": {
+      "name": "Kashif Mehmood",
+      "avatar": "https://i.pravatar.cc/150?img=67",
+      "joinedYear": 2016
+    },
+    "unavailableDates": ["2026-08-26", "2026-08-27", "2026-09-12"]
+  },
+  {
+    "id": 19,
+    "title": "Contemporary Loft Near Canal",
+    "description": "A contemporary loft with large windows, stylish furniture and a peaceful view of the surrounding area.",
+    "images": [
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb"
+    ],
+    "price": 105,
+    "lat": 31.5001,
+    "lng": 74.3189,
+    "type": "Loft",
+    "amenities": ["WiFi", "Workspace", "Kitchen", "Air conditioning", "TV"],
+    "rating": 4.7,
+    "reviewCount": 97,
+    "host": {
+      "name": "Anum Fatima",
+      "avatar": "https://i.pravatar.cc/150?img=31",
+      "joinedYear": 2021
+    },
+    "unavailableDates": ["2026-08-29", "2026-09-04", "2026-09-09"]
+  },
+  {
+    "id": 20,
+    "title": "Comfortable Guesthouse in Gulberg",
+    "description": "A welcoming guesthouse offering clean rooms, friendly hospitality and quick access to major city roads.",
+    "images": [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
+      "https://images.unsplash.com/photo-1605146769289-440113cc3d00"
+    ],
+    "price": 65,
+    "lat": 31.5179,
+    "lng": 74.3505,
+    "type": "Guesthouse",
+    "amenities": ["WiFi", "Breakfast", "Parking", "Air conditioning", "TV"],
+    "rating": 4.5,
+    "reviewCount": 71,
+    "host": {
+      "name": "Danish Ali",
+      "avatar": "https://i.pravatar.cc/150?img=59",
+      "joinedYear": 2019
+    },
+    "unavailableDates": ["2026-08-22", "2026-09-01", "2026-09-11"]
+  },
+  {
+    "id": 21,
+    "title": "Elegant DHA Penthouse",
+    "description": "An upscale penthouse offering spacious interiors, premium furniture and beautiful city views.",
+    "images": [
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+    ],
+    "price": 240,
+    "lat": 31.4744,
+    "lng": 74.4102,
+    "type": "Penthouse",
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Gym",
+      "Parking",
+      "Kitchen",
+      "TV",
+      "Air conditioning"
+    ],
+    "rating": 4.9,
+    "reviewCount": 176,
+    "host": {
+      "name": "Samiullah Khan",
+      "avatar": "https://i.pravatar.cc/150?img=64",
+      "joinedYear": 2015
+    },
+    "unavailableDates": ["2026-08-20", "2026-08-21", "2026-09-06"]
+  },
+  {
+    "id": 22,
+    "title": "Warm Studio Near Liberty",
+    "description": "A compact and beautifully decorated studio for travelers who want comfort and a central location.",
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+      "https://images.unsplash.com/photo-1560185008-b033106af5c3"
+    ],
+    "price": 58,
+    "lat": 31.5117,
+    "lng": 74.3417,
+    "type": "Studio",
+    "amenities": ["WiFi", "Kitchen", "Air conditioning", "TV"],
+    "rating": 4.6,
+    "reviewCount": 68,
+    "host": {
+      "name": "Laiba Noor",
+      "avatar": "https://i.pravatar.cc/150?img=36",
+      "joinedYear": 2022
+    },
+    "unavailableDates": ["2026-08-25", "2026-09-03", "2026-09-10"]
+  },
+  {
+    "id": 23,
+    "title": "Family Villa Near Raiwind Road",
+    "description": "A spacious family villa with a private garden, comfortable bedrooms and plenty of space for groups.",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea"
+    ],
+    "price": 175,
+    "lat": 31.3821,
+    "lng": 74.2158,
+    "type": "Villa",
+    "amenities": [
+      "WiFi",
+      "Garden",
+      "Pool",
+      "Parking",
+      "Kitchen",
+      "Washer",
+      "TV"
+    ],
+    "rating": 4.8,
+    "reviewCount": 153,
+    "host": {
+      "name": "Imran Qureshi",
+      "avatar": "https://i.pravatar.cc/150?img=69",
+      "joinedYear": 2017
+    },
+    "unavailableDates": ["2026-08-28", "2026-09-02", "2026-09-07"]
+  },
+  {
+    "id": 24,
+    "title": "Modern City Apartment",
+    "description": "A comfortable modern apartment with everything needed for a relaxing city stay, including a dedicated workspace.",
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb"
+    ],
+    "price": 88,
+    "lat": 31.5074,
+    "lng": 74.3492,
+    "type": "Apartment",
+    "amenities": [
+      "WiFi",
+      "Workspace",
+      "Kitchen",
+      "Parking",
+      "Air conditioning",
+      "TV"
+    ],
+    "rating": 4.7,
+    "reviewCount": 105,
+    "host": {
+      "name": "Sana Javed",
+      "avatar": "https://i.pravatar.cc/150?img=42",
+      "joinedYear": 2020
+    },
+    "unavailableDates": ["2026-08-24", "2026-09-05", "2026-09-11"]
+  }
+]
