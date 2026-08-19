@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import StyleGuide from "./pages/StyleGuide";
 
 import Search from "./pages/Search";
 import ListingDetail from "./pages/ListingDetail";
@@ -10,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/search" replace />} />
-
+        <Route path="/style-guide" element={<StyleGuide />} />
         <Route path="/search" element={<Search />} />
         <Route path="/listing/:id" element={<ListingDetail />} />
         <Route path="/wishlist" element={<Wishlist />} />
