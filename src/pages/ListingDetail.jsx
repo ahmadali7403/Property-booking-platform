@@ -11,10 +11,13 @@ import {
 } from "lucide-react";
 
 import mockData from "../data/mock-data.json";
+import useBookingStore from "../store/bookingStore";
 
 const ListingDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const startNewBooking = useBookingStore((state) => state.startNewBooking);
 
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
@@ -25,6 +28,8 @@ const ListingDetail = () => {
 
   const listing = mockData.find((item) => item.id === Number(id));
   const images = listing?.images ?? [];
+
+  const today = new Date().toISOString().split("T")[0];
 
   const openLightbox = (index) => {
     setActiveImage(index);
@@ -48,14 +53,12 @@ const ListingDetail = () => {
   };
 
   const handleReserve = () => {
-    navigate("/booking", {
-      state: {
-        listing,
-        checkIn,
-        checkOut,
-        guests,
-      },
-    });
+    if (!listing) return;
+
+    // New booking starts fresh for this property
+    startNewBooking(listing.id);
+
+    navigate(`/booking?listing=${listing.id}`);
   };
 
   useEffect(() => {
@@ -265,6 +268,7 @@ const ListingDetail = () => {
                   <p className="text-sm font-semibold text-gray-900">
                     ★ {listing.rating}
                   </p>
+
                   <p className="mt-1 text-xs text-gray-500">Guest rating</p>
                 </div>
 
@@ -272,6 +276,7 @@ const ListingDetail = () => {
                   <p className="text-sm font-semibold text-gray-900">
                     {listing.reviewCount}
                   </p>
+
                   <p className="mt-1 text-xs text-gray-500">Reviews</p>
                 </div>
 
@@ -279,6 +284,7 @@ const ListingDetail = () => {
                   <p className="text-sm font-semibold text-gray-900">
                     Verified host
                   </p>
+
                   <p className="mt-1 text-xs text-gray-500">
                     Trusted by guests
                   </p>
@@ -316,19 +322,17 @@ const ListingDetail = () => {
 
             {/* Reviews */}
             <section className="mt-10 border-t border-gray-200 pt-8">
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xl text-gray-900">★</span>
+              <div className="flex items-center gap-2">
+                <span className="text-xl text-gray-900">★</span>
 
-                  <h2 className="text-2xl font-semibold text-gray-900">
-                    {listing.rating} · {listing.reviewCount} reviews
-                  </h2>
-                </div>
-
-                <p className="mt-2 text-sm text-gray-500">
-                  See what previous guests loved about this stay.
-                </p>
+                <h2 className="text-2xl font-semibold text-gray-900">
+                  {listing.rating} · {listing.reviewCount} reviews
+                </h2>
               </div>
+
+              <p className="mt-2 text-sm text-gray-500">
+                See what previous guests loved about this stay.
+              </p>
 
               {/* Rating Breakdown */}
               <div className="mt-8 grid gap-8 rounded-3xl border border-gray-200 bg-white p-6 sm:grid-cols-2">
@@ -361,7 +365,6 @@ const ListingDetail = () => {
                   </div>
                 </div>
 
-                {/* Overall Rating */}
                 <div className="flex flex-col items-center justify-center rounded-2xl bg-gray-50 p-6 text-center">
                   <div className="text-4xl font-bold text-gray-900">
                     {listing.rating}
@@ -449,6 +452,7 @@ const ListingDetail = () => {
 
                       <input
                         type="date"
+                        min={today}
                         value={checkIn}
                         onChange={(event) => setCheckIn(event.target.value)}
                         className="w-full cursor-pointer bg-transparent text-sm text-gray-900 outline-none"
@@ -469,6 +473,7 @@ const ListingDetail = () => {
 
                       <input
                         type="date"
+                        min={checkIn || today}
                         value={checkOut}
                         onChange={(event) => setCheckOut(event.target.value)}
                         className="w-full cursor-pointer bg-transparent text-sm text-gray-900 outline-none"
@@ -496,8 +501,9 @@ const ListingDetail = () => {
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
+                      disabled={guests <= 1}
                       onClick={() => setGuests((prev) => Math.max(1, prev - 1))}
-                      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-gray-300 text-gray-700 transition hover:bg-gray-100"
+                      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-gray-300 text-gray-700 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       −
                     </button>
@@ -587,7 +593,7 @@ const ListingDetail = () => {
               </button>
             )}
 
-            {/* Swipeable Image */}
+            {/* Image */}
             <motion.img
               key={activeImage}
               src={images[activeImage]}
