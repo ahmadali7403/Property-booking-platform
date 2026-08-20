@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Badge from "../Badge/Badge";
@@ -6,8 +7,13 @@ import StarRating from "../StarRating/StarRating";
 
 const ListingCard = ({ listing, isActive = false, onHover, onLeave }) => {
   const [currentImage, setCurrentImage] = useState(0);
+  const navigate = useNavigate();
 
   const images = listing.images ?? [];
+
+  const handleCardClick = () => {
+    navigate(`/listing/${listing.id}`);
+  };
 
   const nextImage = (event) => {
     event.stopPropagation();
@@ -27,6 +33,7 @@ const ListingCard = ({ listing, isActive = false, onHover, onLeave }) => {
 
   return (
     <motion.article
+      onClick={handleCardClick}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       animate={{
@@ -38,7 +45,7 @@ const ListingCard = ({ listing, isActive = false, onHover, onLeave }) => {
         stiffness: 300,
         damping: 24,
       }}
-      className={`group overflow-hidden rounded-2xl bg-white shadow-card ${
+      className={`group cursor-pointer overflow-hidden rounded-2xl bg-white shadow-card ${
         isActive ? "ring-2 ring-gray-900/10 shadow-xl" : ""
       }`}
     >
