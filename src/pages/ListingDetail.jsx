@@ -6,18 +6,26 @@ import {
   CalendarDays,
   ChevronLeft,
   ChevronRight,
+  Heart,
   Users,
   X,
 } from "lucide-react";
 
 import mockData from "../data/mock-data.json";
 import useBookingStore from "../store/bookingStore";
+import useWishlistStore from "../store/wishlistStore";
 
 const ListingDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const startNewBooking = useBookingStore((state) => state.startNewBooking);
+
+  const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
+
+  const isSaved = useWishlistStore((state) =>
+    state.wishlist.some((item) => item.id === Number(id)),
+  );
 
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
@@ -55,10 +63,15 @@ const ListingDetail = () => {
   const handleReserve = () => {
     if (!listing) return;
 
-    // New booking starts fresh for this property
     startNewBooking(listing.id);
 
     navigate(`/booking?listing=${listing.id}`);
+  };
+
+  const handleWishlistToggle = () => {
+    if (!listing) return;
+
+    toggleWishlist(listing);
   };
 
   useEffect(() => {
@@ -191,23 +204,54 @@ const ListingDetail = () => {
           </Link>
         </div>
 
-        {/* Heading */}
-        <div>
-          <p className="text-sm font-medium text-gray-500">{listing.type}</p>
+        {/* Heading + Wishlist */}
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-medium text-gray-500">{listing.type}</p>
 
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {listing.title}
-          </h1>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              {listing.title}
+            </h1>
 
-          <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-gray-600">
-            <span className="font-medium text-gray-900">
-              ★ {listing.rating}
-            </span>
+            <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-gray-600">
+              <span className="font-medium text-gray-900">
+                ★ {listing.rating}
+              </span>
 
-            <span>•</span>
+              <span>•</span>
 
-            <span>{listing.reviewCount} reviews</span>
+              <span>{listing.reviewCount} reviews</span>
+            </div>
           </div>
+
+          {/* Wishlist Button */}
+          <motion.button
+            type="button"
+            onClick={handleWishlistToggle}
+            whileTap={{ scale: 0.85 }}
+            whileHover={{ scale: 1.05 }}
+            className={`flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full border shadow-sm transition-colors ${
+              isSaved
+                ? "border-red-200 bg-red-50 text-red-500"
+                : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+            }`}
+            aria-label={isSaved ? "Remove from wishlist" : "Save to wishlist"}
+          >
+            <motion.div
+              animate={{
+                scale: isSaved ? [1, 1.3, 1] : 1,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
+            >
+              <Heart
+                size={22}
+                fill={isSaved ? "currentColor" : "none"}
+                strokeWidth={2}
+              />
+            </motion.div>
+          </motion.button>
         </div>
 
         {/* Gallery */}

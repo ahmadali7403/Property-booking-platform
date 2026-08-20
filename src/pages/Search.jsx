@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Heart } from "lucide-react";
+
 import mockData from "../data/mock-data.json";
 import SkeletonListingCard from "../components/SkeletonListingCard/SkeletonListingCard";
 import ListingCard from "../components/ListingCard/ListingCard";
 import PropertyMap from "../components/PropertyMap/PropertyMap";
 import FiltersPanel from "../components/FiltersPanel/FiltersPanel";
 import useFilterStore from "../store/filterStore";
+import useWishlistStore from "../store/wishlistStore";
 
 const Search = () => {
   const [listings, setListings] = useState([]);
@@ -18,6 +22,8 @@ const Search = () => {
 
   const { filters, clearFilters, togglePropertyType, toggleAmenity } =
     useFilterStore();
+
+  const wishlist = useWishlistStore((state) => state.wishlist);
 
   useEffect(() => {
     try {
@@ -120,13 +126,44 @@ const Search = () => {
                 </p>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setIsFiltersOpen(true)}
-                className="shrink-0 cursor-pointer rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-900 shadow-sm transition hover:border-gray-300 hover:shadow"
-              >
-                Filters
-              </button>
+              <div className="flex shrink-0 items-center gap-2">
+                {/* Wishlist */}
+                <Link
+                  to="/wishlist"
+                  className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-sm font-semibold text-gray-900 shadow-sm transition hover:border-gray-300 hover:shadow sm:px-4"
+                >
+                  <Heart
+                    size={18}
+                    className={
+                      wishlist.length > 0
+                        ? "fill-red-500 text-red-500"
+                        : "text-gray-700"
+                    }
+                  />
+
+                  <span className="hidden sm:inline">Wishlist</span>
+
+                  {wishlist.length > 0 && (
+                    <motion.span
+                      key={wishlist.length}
+                      initial={{ scale: 0.6 }}
+                      animate={{ scale: 1 }}
+                      className="flex h-5 min-w-5 items-center justify-center rounded-full bg-gray-900 px-1 text-[10px] font-bold text-white"
+                    >
+                      {wishlist.length}
+                    </motion.span>
+                  )}
+                </Link>
+
+                {/* Filters */}
+                <button
+                  type="button"
+                  onClick={() => setIsFiltersOpen(true)}
+                  className="cursor-pointer rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-900 shadow-sm transition hover:border-gray-300 hover:shadow"
+                >
+                  Filters
+                </button>
+              </div>
             </div>
 
             {/* Active Filter Chips */}
