@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -52,6 +52,12 @@ const Booking = () => {
 
   const [errors, setErrors] = useState({});
   const [bookingReference, setBookingReference] = useState("");
+
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, [currentStep]);
 
   // --------------------------------------------------
   // LISTING
@@ -268,13 +274,14 @@ const Booking = () => {
             The property you're trying to book could not be found.
           </p>
 
-          <button
+          <motion.button
             type="button"
+            whileTap={{ scale: 0.97 }}
             onClick={() => navigate("/search")}
-            className="mt-5 rounded-xl bg-gray-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-gray-800"
+            className="mt-5 rounded-xl bg-gray-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
           >
             Back to Search
-          </button>
+          </motion.button>
         </div>
       </main>
     );
@@ -293,22 +300,28 @@ const Booking = () => {
             BACK BUTTON
         ========================================== */}
 
-        <button
+        <motion.button
           type="button"
           onClick={handleBack}
-          className="mb-6 inline-flex cursor-pointer items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-50 hover:text-gray-900"
+          whileTap={{ scale: 0.97 }}
+          transition={{ duration: 0.15 }}
+          className="mb-6 inline-flex cursor-pointer items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
         >
           <ArrowLeft size={16} />
 
           {currentStep === 1 ? "Back to Listing" : "Back"}
-        </button>
+        </motion.button>
 
         {/* ==========================================
             STEP INDICATOR
         ========================================== */}
 
         <div className="mb-8 rounded-3xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
-          <div className="flex items-center">
+          <div
+            className="flex items-center"
+            role="list"
+            aria-label="Booking progress"
+          >
             {steps.map((step, index) => {
               const stepNumber = index + 1;
 
@@ -319,6 +332,8 @@ const Booking = () => {
               return (
                 <div
                   key={step}
+                  role="listitem"
+                  aria-current={isActive ? "step" : undefined}
                   className="flex flex-1 items-center last:flex-none"
                 >
                   <div className="flex flex-col items-center">
@@ -330,6 +345,14 @@ const Booking = () => {
                       }`}
                     >
                       {isCompleted ? <Check size={16} /> : stepNumber}
+                      <span className="sr-only">
+                        {step}{" "}
+                        {isCompleted
+                          ? "– completed"
+                          : isActive
+                            ? "– current step"
+                            : ""}
+                      </span>
                     </div>
                   </div>
 
@@ -351,7 +374,7 @@ const Booking = () => {
                 key={step}
                 className={
                   currentStep === index + 1
-                    ? "text-gray-900"
+                    ? "text-gray-900 font-semibold"
                     : currentStep > index + 1
                       ? "text-gray-700"
                       : "text-gray-400"
@@ -395,7 +418,11 @@ const Booking = () => {
               <section className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
                 <p className="text-sm font-medium text-gray-500">Step 1 of 4</p>
 
-                <h1 className="mt-1 text-3xl font-bold tracking-tight text-gray-900">
+                <h1
+                  ref={headingRef}
+                  tabIndex={-1}
+                  className="mt-1 text-3xl font-bold tracking-tight text-gray-900 outline-none"
+                >
                   Choose your dates
                 </h1>
 
@@ -417,7 +444,7 @@ const Booking = () => {
                       className={`mt-2 flex items-center gap-3 rounded-2xl border bg-white p-4 ${
                         errors.checkIn
                           ? "border-red-400 ring-2 ring-red-100"
-                          : "border-gray-300 focus-within:border-gray-900"
+                          : "border-gray-300 focus-within:border-gray-900 focus-within:ring-2 focus-within:ring-gray-900/10"
                       }`}
                     >
                       <CalendarDays
@@ -430,12 +457,20 @@ const Booking = () => {
                         min={today}
                         value={checkIn}
                         onChange={handleCheckInChange}
+                        aria-invalid={Boolean(errors.checkIn)}
+                        aria-describedby={
+                          errors.checkIn ? "checkin-error" : undefined
+                        }
                         className="w-full bg-transparent text-sm text-gray-900 outline-none"
                       />
                     </div>
 
                     {errors.checkIn && (
-                      <p className="mt-2 text-xs font-medium text-red-600">
+                      <p
+                        id="checkin-error"
+                        role="alert"
+                        className="mt-2 text-xs font-medium text-red-600"
+                      >
                         {errors.checkIn}
                       </p>
                     )}
@@ -452,7 +487,7 @@ const Booking = () => {
                       className={`mt-2 flex items-center gap-3 rounded-2xl border bg-white p-4 ${
                         errors.checkOut
                           ? "border-red-400 ring-2 ring-red-100"
-                          : "border-gray-300 focus-within:border-gray-900"
+                          : "border-gray-300 focus-within:border-gray-900 focus-within:ring-2 focus-within:ring-gray-900/10"
                       }`}
                     >
                       <CalendarDays
@@ -466,6 +501,10 @@ const Booking = () => {
                         value={checkOut}
                         onChange={handleCheckOutChange}
                         disabled={!checkIn}
+                        aria-invalid={Boolean(errors.checkOut)}
+                        aria-describedby={
+                          errors.checkOut ? "checkout-error" : undefined
+                        }
                         className="w-full bg-transparent text-sm text-gray-900 outline-none disabled:cursor-not-allowed disabled:text-gray-400"
                       />
                     </div>
@@ -477,7 +516,11 @@ const Booking = () => {
                     )}
 
                     {errors.checkOut && (
-                      <p className="mt-2 text-xs font-medium text-red-600">
+                      <p
+                        id="checkout-error"
+                        role="alert"
+                        className="mt-2 text-xs font-medium text-red-600"
+                      >
                         {errors.checkOut}
                       </p>
                     )}
@@ -511,31 +554,41 @@ const Booking = () => {
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <button
+                      <motion.button
                         type="button"
                         onClick={decreaseGuests}
                         disabled={guests === 1}
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
+                        aria-label="Decrease guest count"
+                        whileTap={{ scale: 0.92 }}
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 transition hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         <Minus size={16} />
-                      </button>
+                      </motion.button>
 
-                      <span className="w-5 text-center text-sm font-semibold text-gray-900">
+                      <span
+                        aria-live="polite"
+                        className="w-5 text-center text-sm font-semibold text-gray-900"
+                      >
                         {guests}
                       </span>
 
-                      <button
+                      <motion.button
                         type="button"
                         onClick={increaseGuests}
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 transition hover:bg-gray-100"
+                        aria-label="Increase guest count"
+                        whileTap={{ scale: 0.92 }}
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 transition hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
                       >
                         <Plus size={16} />
-                      </button>
+                      </motion.button>
                     </div>
                   </div>
 
                   {errors.guests && (
-                    <p className="mt-2 text-xs font-medium text-red-600">
+                    <p
+                      role="alert"
+                      className="mt-2 text-xs font-medium text-red-600"
+                    >
                       {errors.guests}
                     </p>
                   )}
@@ -543,14 +596,16 @@ const Booking = () => {
 
                 {/* CONTINUE */}
 
-                <button
+                <motion.button
                   type="button"
                   onClick={handleStepOneContinue}
-                  className="mt-8 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gray-900 py-4 text-sm font-semibold text-white transition hover:bg-gray-800"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="mt-8 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gray-900 py-4 text-sm font-semibold text-white transition hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
                 >
                   Continue
                   <ChevronRight size={18} />
-                </button>
+                </motion.button>
               </section>
 
               {/* LISTING SUMMARY */}
@@ -560,6 +615,7 @@ const Booking = () => {
                   <img
                     src={listing.images?.[0]}
                     alt={listing.title}
+                    loading="lazy"
                     className="h-52 w-full object-cover"
                   />
 
@@ -622,7 +678,11 @@ const Booking = () => {
               <section className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
                 <p className="text-sm font-medium text-gray-500">Step 2 of 4</p>
 
-                <h1 className="mt-1 text-3xl font-bold tracking-tight text-gray-900">
+                <h1
+                  ref={headingRef}
+                  tabIndex={-1}
+                  className="mt-1 text-3xl font-bold tracking-tight text-gray-900 outline-none"
+                >
                   Review your trip
                 </h1>
 
@@ -636,6 +696,7 @@ const Booking = () => {
                   <img
                     src={listing.images?.[0]}
                     alt={listing.title}
+                    loading="lazy"
                     className="h-24 w-24 rounded-2xl object-cover"
                   />
 
@@ -675,7 +736,7 @@ const Booking = () => {
                     <button
                       type="button"
                       onClick={handleEditBooking}
-                      className="cursor-pointer text-sm font-semibold text-gray-900 underline underline-offset-4"
+                      className="cursor-pointer text-sm font-semibold text-gray-900 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 rounded"
                     >
                       Edit
                     </button>
@@ -733,14 +794,16 @@ const Booking = () => {
                   </div>
                 </div>
 
-                <button
+                <motion.button
                   type="button"
                   onClick={nextStep}
-                  className="mt-8 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gray-900 py-4 text-sm font-semibold text-white transition hover:bg-gray-800"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="mt-8 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gray-900 py-4 text-sm font-semibold text-white transition hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
                 >
                   Continue to Payment
                   <ChevronRight size={18} />
-                </button>
+                </motion.button>
               </section>
 
               {/* SUMMARY */}
@@ -800,7 +863,11 @@ const Booking = () => {
               <section className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
                 <p className="text-sm font-medium text-gray-500">Step 3 of 4</p>
 
-                <h1 className="mt-1 text-3xl font-bold tracking-tight text-gray-900">
+                <h1
+                  ref={headingRef}
+                  tabIndex={-1}
+                  className="mt-1 text-3xl font-bold tracking-tight text-gray-900 outline-none"
+                >
                   Payment
                 </h1>
 
@@ -824,7 +891,7 @@ const Booking = () => {
                       className={`mt-2 flex items-center gap-3 rounded-2xl border p-4 ${
                         paymentErrors.cardNumber
                           ? "border-red-400 ring-2 ring-red-100"
-                          : "border-gray-300"
+                          : "border-gray-300 focus-within:border-gray-900 focus-within:ring-2 focus-within:ring-gray-900/10"
                       }`}
                     >
                       <CreditCard
@@ -837,12 +904,20 @@ const Booking = () => {
                         type="text"
                         inputMode="numeric"
                         placeholder="1234 5678 9012 3456"
+                        aria-invalid={Boolean(paymentErrors.cardNumber)}
+                        aria-describedby={
+                          paymentErrors.cardNumber ? "card-error" : undefined
+                        }
                         className="w-full bg-transparent text-sm text-gray-900 outline-none"
                       />
                     </div>
 
                     {paymentErrors.cardNumber && (
-                      <p className="mt-2 text-xs font-medium text-red-600">
+                      <p
+                        id="card-error"
+                        role="alert"
+                        className="mt-2 text-xs font-medium text-red-600"
+                      >
                         {paymentErrors.cardNumber.message}
                       </p>
                     )}
@@ -861,15 +936,23 @@ const Booking = () => {
                         type="text"
                         placeholder="MM/YY"
                         maxLength={5}
+                        aria-invalid={Boolean(paymentErrors.expiry)}
+                        aria-describedby={
+                          paymentErrors.expiry ? "expiry-error" : undefined
+                        }
                         className={`mt-2 w-full rounded-2xl border p-4 text-sm text-gray-900 outline-none ${
                           paymentErrors.expiry
                             ? "border-red-400 ring-2 ring-red-100"
-                            : "border-gray-300 focus:border-gray-900"
+                            : "border-gray-300 focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
                         }`}
                       />
 
                       {paymentErrors.expiry && (
-                        <p className="mt-2 text-xs font-medium text-red-600">
+                        <p
+                          id="expiry-error"
+                          role="alert"
+                          className="mt-2 text-xs font-medium text-red-600"
+                        >
                           {paymentErrors.expiry.message}
                         </p>
                       )}
@@ -886,15 +969,23 @@ const Booking = () => {
                         inputMode="numeric"
                         placeholder="123"
                         maxLength={4}
+                        aria-invalid={Boolean(paymentErrors.cvc)}
+                        aria-describedby={
+                          paymentErrors.cvc ? "cvc-error" : undefined
+                        }
                         className={`mt-2 w-full rounded-2xl border p-4 text-sm text-gray-900 outline-none ${
                           paymentErrors.cvc
                             ? "border-red-400 ring-2 ring-red-100"
-                            : "border-gray-300 focus:border-gray-900"
+                            : "border-gray-300 focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
                         }`}
                       />
 
                       {paymentErrors.cvc && (
-                        <p className="mt-2 text-xs font-medium text-red-600">
+                        <p
+                          id="cvc-error"
+                          role="alert"
+                          className="mt-2 text-xs font-medium text-red-600"
+                        >
                           {paymentErrors.cvc.message}
                         </p>
                       )}
@@ -912,13 +1003,15 @@ const Booking = () => {
                     </p>
                   </div>
 
-                  <button
+                  <motion.button
                     type="submit"
-                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gray-900 py-4 text-sm font-semibold text-white transition hover:bg-gray-800"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gray-900 py-4 text-sm font-semibold text-white transition hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
                   >
                     Pay ${total}
                     <ChevronRight size={18} />
-                  </button>
+                  </motion.button>
                 </form>
               </section>
 
@@ -1011,6 +1104,8 @@ const Booking = () => {
                 {/* TITLE */}
 
                 <motion.h1
+                  ref={headingRef}
+                  tabIndex={-1}
                   initial={{
                     opacity: 0,
                     y: 10,
@@ -1022,7 +1117,7 @@ const Booking = () => {
                   transition={{
                     delay: 0.2,
                   }}
-                  className="mt-6 text-3xl font-bold tracking-tight text-gray-900"
+                  className="mt-6 text-3xl font-bold tracking-tight text-gray-900 outline-none"
                 >
                   Booking confirmed!
                 </motion.h1>
@@ -1062,6 +1157,7 @@ const Booking = () => {
                     <img
                       src={listing.images?.[0]}
                       alt={listing.title}
+                      loading="lazy"
                       className="h-20 w-20 rounded-xl object-cover"
                     />
 
@@ -1119,13 +1215,15 @@ const Booking = () => {
 
                 {/* BACK TO LISTING */}
 
-                <button
+                <motion.button
                   type="button"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => navigate(`/listing/${listing.id}`)}
-                  className="mt-8 inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gray-900 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-gray-800"
+                  className="mt-8 inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl bg-gray-900 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
                 >
                   Back to Listing
-                </button>
+                </motion.button>
               </section>
             </motion.div>
           )}

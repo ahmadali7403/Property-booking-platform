@@ -20,6 +20,8 @@ const ListingDetail = () => {
   const navigate = useNavigate();
 
   const startNewBooking = useBookingStore((state) => state.startNewBooking);
+  const setDates = useBookingStore((state) => state.setDates);
+  const setStoreGuests = useBookingStore((state) => state.setGuests);
 
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
 
@@ -64,6 +66,8 @@ const ListingDetail = () => {
     if (!listing) return;
 
     startNewBooking(listing.id);
+    setDates(checkIn, checkOut);
+    setStoreGuests(guests);
 
     navigate(`/booking?listing=${listing.id}`);
   };
